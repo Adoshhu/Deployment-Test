@@ -84,6 +84,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: CEUDrive_production
   username: CEUDrive
   password: <%= ENV["CEUDRIVE_DATABASE_PASSWORD"] %>
