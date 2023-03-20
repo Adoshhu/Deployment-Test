@@ -38,7 +38,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem "devise"
-gem "webpacker"
 gem "image_processing", "~> 1.2"
 gem "bcrypt", "~> 3.1.7"
 
