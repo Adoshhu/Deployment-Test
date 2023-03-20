@@ -1,9 +1,31 @@
-<h1>New folder</h1>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">New Folder</h3>
+    </div>
+    <div class="card-body">
+      <% if user_signed_in? %>
+        <%= form_for @folder do |form| %>
+          <div class="mb-3">
+            <%= form.label :folderName, class: "form-label" %>
+            <%= form.text_field :folderName, class: "form-control" %>
+          </div>
 
-<%= render "form", folder: @folder %>
+          <div class="mb-3">
+            <%= form.label :content, class: "form-label" %>
+            <%= form.text_field :content, class: "form-control" %>
+          </div>
 
-<br>
+          <%= form.hidden_field :user_id, value: current_user.id %>   
+          <%= form.label :files, class: "form-label" %>
+          <%= form.file_field :files, multiple: true, class: "form-control" %>
+        
+          <%= form.submit "Create Folder", class: "btn btn-primary mt-3", data: {turbo: false} %>
+        <% end %>
 
-<div>
-  <%= link_to "Back to folders", folders_path %>
+      <% else %>
+        <p>Please sign in to create a new folder.</p>
+      <% end %>
+    </div>
+  </div>
 </div>

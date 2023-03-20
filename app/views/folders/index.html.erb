@@ -1,14 +1,30 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Folders</h1>
-
-<div id="folders">
-  <% @folders.each do |folder| %>
-    <%= render folder %>
-    <p>
-      <%= link_to "Show this folder", folder %>
-    </p>
-  <% end %>
+<div class="container">
+  <h1>Folder Index</h1>
+  
+  <%= link_to "New Folder", new_folder_path, class: "btn btn-primary mb-3" %>
+  
+  <p>Hello <%= current_user.email %></p>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Folder Name</th>
+        <th>Content</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @folders.each do |folder| %>
+        <tr>
+          <td><%= folder.folderName %></td>
+          <td><%= folder.content %></td>
+          <td><%= link_to "Edit", edit_folder_path(folder.id), class: "btn btn-primary btn-sm"%></td>
+          <td><%= link_to 'Show', folder_path(folder.id), class: "btn btn-secondary btn-sm" %></td>
+          <td><%= button_to "Delete", folder_path(folder.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New folder", new_folder_path %>

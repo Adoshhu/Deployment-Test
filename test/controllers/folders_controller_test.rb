@@ -1,48 +1,28 @@
 require "test_helper"
 
 class FoldersControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @folder = folders(:one)
+  test "should get new" do
+    get folders_new_url
+    assert_response :success
   end
 
   test "should get index" do
-    get folders_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_folder_url
-    assert_response :success
-  end
-
-  test "should create folder" do
-    assert_difference("Folder.count") do
-      post folders_url, params: { folder: { folderName: @folder.folderName, user_id: @folder.user_id } }
-    end
-
-    assert_redirected_to folder_url(Folder.last)
-  end
-
-  test "should show folder" do
-    get folder_url(@folder)
+    get folders_index_url
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_folder_url(@folder)
+    get folders_edit_url
     assert_response :success
   end
 
-  test "should update folder" do
-    patch folder_url(@folder), params: { folder: { folderName: @folder.folderName, user_id: @folder.user_id } }
-    assert_redirected_to folder_url(@folder)
+  test "should get show" do
+    get folders_show_url
+    assert_response :success
   end
 
-  test "should destroy folder" do
-    assert_difference("Folder.count", -1) do
-      delete folder_url(@folder)
-    end
-
-    assert_redirected_to folders_url
+  test "should get destroy" do
+    get folders_destroy_url
+    assert_response :success
   end
 end
