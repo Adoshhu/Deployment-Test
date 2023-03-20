@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="header-right">
+      <%= image_tag("header-mobile-logo.png", alt: "Logo", height: "50", width: "100") %>
+    </div>
+    <%= link_to 'Archives', root_path, class:"navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav mr-auto">    
+        <% if current_user %>          
+         <%= link_to 'Folders', folders_path, class:"nav-link active"%>
+          <%= link_to 'Update User', edit_user_registration_path, class:"nav-link active" %>
+          <%= link_to "Logout", destroy_user_session_path, 'data-turbo-method': :delete, class:"nav-link active" %>
+          <%= link_to "About Us", about_path, class:"nav-link active" %>
+        <% else %>
+          <%= link_to 'Sign up', new_user_registration_path, class:"nav-link active"%>
+          <%= link_to 'Sign in', new_user_session_path, class:"nav-link active"%>
+        <% end %>       
+      </div> 
+      <% if current_user %>
+        <% if current_user.admin? %>
+        <div class="ms-auto">
+          <p class="text-end">Total registered user <%= User.count %> </p>
+          <%= link_to 'User list', pages_path %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</nav>

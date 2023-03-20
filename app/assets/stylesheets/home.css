@@ -1,0 +1,25 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+  }
+  
+  section {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    color: #FFC0CB;
+  }
+
+  .header-right {
+    float: right;
+  }
+  
+  .header-right img {
+    margin: 10px;
+  }

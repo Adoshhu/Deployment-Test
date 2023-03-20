@@ -1,53 +1,59 @@
 class FoldersController < ApplicationController
+  before_action :find_folder, only: [:show, :edit, :update, :destroy]
+
   def index
-    @folders = Folder.all
+    if user_signed_in?
+      @folders = current_user.folders
+    else
+      redirect_to new_user_session_path, notice: 'Please sign in to view your folders.'
+    end
   end
 
   def show
   end
 
   def new
-    @folder = Folder.new
+    @folder = current_user.folders.build
   end
 
   def create
-    @folder = Folder.new(folder_params)
-
+    @folder = current_user.folders.build(folder_params)
+    @folder.files.attach(params[:folder][:files])
+  
     if @folder.save
-      redirect_to '/folders', notice: 'Created'
+      redirect_to folders_path, notice: 'Folder created successfully.'
     else
-      redirect_to '/folders/new', notice: 'Failed'
+      render :new
     end
-  end
+  end  
 
   def edit
-    find_folder
   end
 
   def update
-    find_folder
-
     if @folder.update(folder_params)
-      redirect_to '/folders', notice: 'Updated'
+      if params[:folder][:files].present?
+        @folder.files.attach(params[:folder][:files])
+      end
+      redirect_to folders_path, notice: 'Folder updated successfully.'
     else
-      redirect_to '/folders/edit', notice: 'Failed'
+      render :edit
     end
   end
+  
 
   def destroy
-      find_folder
-      @folder.destroy
-      redirect_to '/folders', notice: 'Deleted'
-
+    @folder.destroy
+    redirect_to folders_path, notice: 'Folder deleted successfully.'
   end
 
   private
 
   def folder_params
-    params.require(:folder).permit(:folderName, :content)
+    params.require(:folder).permit(:folderName, :content, files: [])
   end
 
   def find_folder
-    @folder = Folder.find_by(id: params[:id])
+    @folder = current_user.folders.find(params[:id])
   end
 end

@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <% if user_signed_in? %>
-        <%= form_for @folder do |form| %>
+        <%= form_for @folder, data: {turbo: false} do |form| %>
           <div class="mb-3">
             <%= form.label :folderName, class: "form-label" %>
             <%= form.text_field :folderName, class: "form-control" %>
@@ -18,8 +18,8 @@
 
           <%= form.hidden_field :user_id, value: current_user.id %>   
           <%= form.label :files, class: "form-label" %>
-          <%= form.file_field :files, multiple: true, class: "form-control" %>
-        
+         
+          <%= render 'folders/fileUpload', form: form %>
           <%= form.submit "Create Folder", class: "btn btn-primary mt-3", data: {turbo: false} %>
         <% end %>
 

@@ -4,5 +4,6 @@ class PagesController < ApplicationController
 
   def index
     @logged_in = user_signed_in?
+    @user = User.all
   end
 end
