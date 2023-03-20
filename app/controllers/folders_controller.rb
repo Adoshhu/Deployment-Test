@@ -50,7 +50,7 @@ class FoldersController < ApplicationController
   private
 
   def folder_params
-    params.require(:folder).permit(:folderName, :content, files: [])
+    params.require(:folder).permit(:folderName, files: [])
   end
 
   def find_folder

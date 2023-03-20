@@ -11,13 +11,7 @@
             <%= form.text_field :folderName, class: "form-control" %>
           </div>
 
-          <div class="mb-3">
-            <%= form.label :content, class: "form-label" %>
-            <%= form.text_field :content, class: "form-control" %>
-          </div>
-
           <%= form.hidden_field :user_id, value: current_user.id %>   
-          <%= form.label :files, class: "form-label" %>
          
           <%= render 'folders/fileUpload', form: form %>
           <%= form.submit "Create Folder", class: "btn btn-primary mt-3", data: {turbo: false} %>

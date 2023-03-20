@@ -10,16 +10,9 @@
             <%= form.label :folderName, class: "form-label" %>
             <%= form.text_field :folderName, class: "form-control" %>
           </div>
+          <%= render 'folders/fileUpload', form: form %>
 
-          <div class="mb-3">
-            <%= form.label :content, class: "form-label" %>
-            <%= form.text_field :content, class: "form-control" %>
-          </div>
-
-          <%= form.hidden_field :user_id, value: current_user.id %>   
-          <%= form.label :files, class: "form-label" %>
-          <%= form.file_field :files, multiple: true, class: "form-control" %>
-        
+          <%= form.hidden_field :user_id, value: current_user.id %>           
           <%= form.submit "Update Folder", class: "btn btn-primary mt-3", data: {turbo: false} %>
         <% end %>
 

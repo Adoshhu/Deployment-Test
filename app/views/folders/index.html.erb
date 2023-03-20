@@ -18,8 +18,7 @@
     <tbody>
       <% @folders.each do |folder| %>
         <tr>
-          <td><%= folder.folderName %></td>
-          <td><%= folder.content %></td>
+          <td><%= folder.folderName %></td>          
           <td><%= link_to "Edit", edit_folder_path(folder.id), class: "btn btn-primary btn-sm"%></td>
           <td><%= link_to 'Show', folder_path(folder.id), class: "btn btn-secondary btn-sm" %></td>
           <td><%= button_to "Delete", folder_path(folder.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-sm" %></td>
