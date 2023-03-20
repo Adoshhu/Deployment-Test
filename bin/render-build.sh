@@ -5,6 +5,4 @@ set -o errexit
 bundle install
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
-bundle exec rails webpacker:install
-bundle exec rails webpacker:compile
 bundle exec rails db:migrate
