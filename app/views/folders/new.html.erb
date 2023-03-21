@@ -10,10 +10,10 @@
             <%= form.label :folderName, class: "form-label" %>
             <%= form.text_field :folderName, class: "form-control" %>
           </div>
-
-          <%= form.hidden_field :user_id, value: current_user.id %>   
-         
+          <div class="mb-3">
           <%= render 'folders/fileUpload', form: form %>
+          </div>
+          <%= form.hidden_field :user_id, value: current_user.id %>   
           <%= form.submit "Create Folder", class: "btn btn-primary mt-3", data: {turbo: false} %>
         <% end %>
 
