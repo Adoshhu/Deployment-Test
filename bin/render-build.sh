@@ -2,9 +2,12 @@
 # exit on error
 set -o errexit
 
-bundle install
-bundle exec rails assets:precompile
+bundle install --deployment --without development test
+
+RAILS_ENV=production bundle exec rails assets:precompile
 bundle exec rails assets:clean
-bundle exec rails db:migrate
+
+RAILS_ENV=production bundle exec rails db:migrate
+
 bundle exec rails db:seed
 bundle exec rails webpacker:install
