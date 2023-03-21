@@ -10,4 +10,3 @@ bundle exec rails assets:clean
 RAILS_ENV=production bundle exec rails db:migrate
 
 bundle exec rails db:seed
-bundle exec rails webpacker:install
