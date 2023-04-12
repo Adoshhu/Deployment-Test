@@ -5,7 +5,8 @@
     </div>
     <div class="card-body">
       <% if user_signed_in? %>
-        <%= form_for @folder, data: {turbo: false} do |form| %>
+      
+        <%= form_with model: @folder do |form| %>
           <div class="mb-3">
             <%= form.label :folderName, class: "form-label" %>
             <%= form.text_field :folderName, class: "form-control" %>

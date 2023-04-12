@@ -1,5 +1,7 @@
 class FoldersController < ApplicationController
-  before_action :find_folder, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, except: [:new, :create]
+  before_action :set_folder, except: [:index, :new, :create]
+
 
   def index
     if user_signed_in?
